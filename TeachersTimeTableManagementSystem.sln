@@ -7,6 +7,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{0532
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachersTimeTable.Api", "backend\TeachersTimeTable.Api\TeachersTimeTable.Api.csproj", "{F6EC0CAD-DF8D-D56E-531F-8666B61A3EC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachersTimeTable.Domain", "backend\TeachersTimeTable.Domain\TeachersTimeTable.Domain.csproj", "{1EF021D2-2558-A042-5D25-63A7103BAF1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachersTimeTable.Application", "TeachersTimeTable.Application\TeachersTimeTable.Application.csproj", "{336E6CB1-79D7-4327-94D7-C456C98697EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachersTimeTable.Infrastructure", "TeachersTimeTable.Infrastructure\TeachersTimeTable.Infrastructure.csproj", "{4A104E19-F988-48E7-9878-699C37DCE969}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +23,27 @@ Global
 		{F6EC0CAD-DF8D-D56E-531F-8666B61A3EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6EC0CAD-DF8D-D56E-531F-8666B61A3EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6EC0CAD-DF8D-D56E-531F-8666B61A3EC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EF021D2-2558-A042-5D25-63A7103BAF1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EF021D2-2558-A042-5D25-63A7103BAF1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EF021D2-2558-A042-5D25-63A7103BAF1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EF021D2-2558-A042-5D25-63A7103BAF1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{336E6CB1-79D7-4327-94D7-C456C98697EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{336E6CB1-79D7-4327-94D7-C456C98697EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{336E6CB1-79D7-4327-94D7-C456C98697EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{336E6CB1-79D7-4327-94D7-C456C98697EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A104E19-F988-48E7-9878-699C37DCE969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A104E19-F988-48E7-9878-699C37DCE969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A104E19-F988-48E7-9878-699C37DCE969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A104E19-F988-48E7-9878-699C37DCE969}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F6EC0CAD-DF8D-D56E-531F-8666B61A3EC9} = {05326CEF-16D6-4137-BBFD-D849B4BF4108}
+		{1EF021D2-2558-A042-5D25-63A7103BAF1C} = {05326CEF-16D6-4137-BBFD-D849B4BF4108}
+		{336E6CB1-79D7-4327-94D7-C456C98697EB} = {05326CEF-16D6-4137-BBFD-D849B4BF4108}
+		{4A104E19-F988-48E7-9878-699C37DCE969} = {05326CEF-16D6-4137-BBFD-D849B4BF4108}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40062754-9C5D-4FB5-807C-2540E7CBBE2F}
