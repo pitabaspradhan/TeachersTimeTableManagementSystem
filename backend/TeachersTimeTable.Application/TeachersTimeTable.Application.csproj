@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TeachersTimeTable.Domain\TeachersTimeTable.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
