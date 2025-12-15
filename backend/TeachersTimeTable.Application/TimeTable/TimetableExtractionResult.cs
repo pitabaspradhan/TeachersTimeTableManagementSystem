@@ -2,5 +2,6 @@
 
 public sealed class TimetableExtractionResult
 {
-    public string RawJson { get; init; } = string.Empty;
+    public IReadOnlyList<TimetableEntryDto> Entries { get; init; }
+        = Array.Empty<TimetableEntryDto>();
 }

@@ -28,30 +28,32 @@ public sealed class TimetableExtractionService
             cancellationToken);
 
         if (string.IsNullOrWhiteSpace(ocrResult.RawText))
-        {
             throw new InvalidOperationException(
-                "OCR did not return any readable text.");
-        }
+                "OCR returned no readable text.");
 
-        // 2️⃣ Build Gemini prompt
+        // 2️⃣ Prompt
         var prompt = GeminiPromptBuilder
             .BuildTimetableExtractionPrompt(ocrResult.RawText);
 
-        // 3️⃣ Call Gemini
+        // 3️⃣ AI call
         var aiResponse = await _aiClient.GenerateAsync(
             prompt,
             cancellationToken);
 
         if (string.IsNullOrWhiteSpace(aiResponse))
-        {
             throw new InvalidOperationException(
-                "AI did not return any response.");
-        }
+                "AI returned an empty response.");
 
-        // 4️⃣ Return raw JSON (validation comes later)
+        // 4️⃣ Extract & validate JSON
+        var json = AiJsonExtractor.ExtractJsonArray(aiResponse);
+
+        var entries = AiJsonExtractor
+            .DeserializeArray<TimetableEntryDto>(json);
+
+        // 5️⃣ Return typed result
         return new TimetableExtractionResult
         {
-            RawJson = aiResponse
+            Entries = entries
         };
     }
 }
