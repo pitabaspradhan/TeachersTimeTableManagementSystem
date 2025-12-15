@@ -7,7 +7,7 @@ public static class GeminiPromptBuilder
         if (string.IsNullOrWhiteSpace(ocrText))
             throw new ArgumentException("OCR text cannot be empty", nameof(ocrText));
 
-        return $"""
+        return $$"""
 You are a data extraction engine.
 You do not explain.
 You do not summarize.
@@ -29,12 +29,12 @@ OUTPUT FORMAT:
 Return ONLY a valid JSON array.
 Each element MUST strictly follow this schema:
 
-{{
+{
   "day": "Monday | Tuesday | Wednesday | Thursday | Friday",
   "subject": "string",
   "startTime": "hh:mm am/pm",
   "endTime": "hh:mm am/pm"
-}}
+}
 
 FORMAT RULES:
 - Use English day names only.
@@ -44,7 +44,7 @@ FORMAT RULES:
 - Do NOT include any text outside the JSON array.
 
 OCR TEXT:
-{ocrText}
+{{ocrText}}
 """;
     }
 }
