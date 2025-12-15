@@ -5,7 +5,7 @@ VisualStudioVersion = 18.1.11304.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{05326CEF-16D6-4137-BBFD-D849B4BF4108}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachersTimeTable.Api", "TeachersTimeTable.Api\TeachersTimeTable.Api.csproj", "{FFFEA644-91DE-4F6A-86D4-4B577FAB1278}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachersTimeTable.Api", "backend\TeachersTimeTable.Api\TeachersTimeTable.Api.csproj", "{F6EC0CAD-DF8D-D56E-531F-8666B61A3EC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +13,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FFFEA644-91DE-4F6A-86D4-4B577FAB1278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFFEA644-91DE-4F6A-86D4-4B577FAB1278}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFFEA644-91DE-4F6A-86D4-4B577FAB1278}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFFEA644-91DE-4F6A-86D4-4B577FAB1278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6EC0CAD-DF8D-D56E-531F-8666B61A3EC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6EC0CAD-DF8D-D56E-531F-8666B61A3EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6EC0CAD-DF8D-D56E-531F-8666B61A3EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6EC0CAD-DF8D-D56E-531F-8666B61A3EC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{FFFEA644-91DE-4F6A-86D4-4B577FAB1278} = {05326CEF-16D6-4137-BBFD-D849B4BF4108}
+		{F6EC0CAD-DF8D-D56E-531F-8666B61A3EC9} = {05326CEF-16D6-4137-BBFD-D849B4BF4108}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40062754-9C5D-4FB5-807C-2540E7CBBE2F}
