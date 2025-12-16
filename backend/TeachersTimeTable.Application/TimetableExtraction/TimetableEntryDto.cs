@@ -1,4 +1,4 @@
-﻿namespace TeachersTimeTable.Application.Timetable;
+﻿namespace TeachersTimeTable.Application.TimetableExtraction;
 
 public sealed class TimetableEntryDto
 {

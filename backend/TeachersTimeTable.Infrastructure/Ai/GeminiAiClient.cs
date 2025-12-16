@@ -1,5 +1,5 @@
-﻿using System.Text;
-using System.Text.Json;
+﻿using System.Net.Http.Json;
+using Microsoft.Extensions.Options;
 using TeachersTimeTable.Application.Ai;
 
 namespace TeachersTimeTable.Infrastructure.Ai;
@@ -7,70 +7,53 @@ namespace TeachersTimeTable.Infrastructure.Ai;
 public sealed class GeminiAiClient : IAiClient
 {
     private readonly HttpClient _httpClient;
-    private readonly string _apiKey;
+    private readonly GeminiOptions _options;
 
-    public GeminiAiClient(HttpClient httpClient, string apiKey)
+    public GeminiAiClient(
+        HttpClient httpClient,
+        IOptions<GeminiOptions> options)
     {
         _httpClient = httpClient;
-        _apiKey = apiKey;
+        _options = options.Value;
+
+        if (string.IsNullOrWhiteSpace(_options.ApiKey))
+            throw new InvalidOperationException("Gemini API key is missing");
     }
 
     public async Task<string> GenerateAsync(
-        string prompt,
-        CancellationToken cancellationToken)
+    string prompt,
+    CancellationToken cancellationToken)
     {
         var requestUri =
-            $"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent?key={_apiKey}";
+    $"https://generativelanguage.googleapis.com/v1/{_options.Model}:generateContent?key={_options.ApiKey}";
 
-        var requestBody = new
+        var request = new
         {
             contents = new[]
             {
-                new
+            new
+            {
+                parts = new[]
                 {
-                    parts = new[]
-                    {
-                        new { text = prompt }
-                    }
+                    new { text = prompt }
                 }
             }
+        }
         };
 
-        var json = JsonSerializer.Serialize(requestBody);
-
-        using var request = new HttpRequestMessage(HttpMethod.Post, requestUri)
-        {
-            Content = new StringContent(json, Encoding.UTF8, "application/json")
-        };
-
-        using var response = await _httpClient.SendAsync(
+        var response = await _httpClient.PostAsJsonAsync(
+            requestUri,
             request,
-            HttpCompletionOption.ResponseHeadersRead,
             cancellationToken);
+
+        var body = await response.Content.ReadAsStringAsync(cancellationToken);
 
         if (!response.IsSuccessStatusCode)
         {
-            var error = await response.Content.ReadAsStringAsync(cancellationToken);
             throw new InvalidOperationException(
-                $"Gemini API call failed: {response.StatusCode} - {error}");
+                $"Gemini API failed ({response.StatusCode}): {body}");
         }
 
-        using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
-
-        using var document = await JsonDocument.ParseAsync(stream, cancellationToken: cancellationToken);
-
-        // Extract text response from Gemini
-        var text = document
-            .RootElement
-            .GetProperty("candidates")[0]
-            .GetProperty("content")
-            .GetProperty("parts")[0]
-            .GetProperty("text")
-            .GetString();
-
-        if (string.IsNullOrWhiteSpace(text))
-            throw new InvalidOperationException("Gemini returned empty response");
-
-        return text;
+        return body;
     }
 }

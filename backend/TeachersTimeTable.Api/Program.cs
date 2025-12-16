@@ -1,37 +1,58 @@
-using Microsoft.AspNetCore.Builder;
-using TeachersTimeTable.Infrastructure.DependencyInjection;
+using Microsoft.Extensions.Options;
+using TeachersTimeTable.Application.Ai;
+using TeachersTimeTable.Application.Ocr;
+using TeachersTimeTable.Application.Services;
+using TeachersTimeTable.Application.TimetableExtraction;
+using TeachersTimeTable.Infrastructure.Ai;
+using TeachersTimeTable.Infrastructure.Ocr;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// --------------------
+// Framework services
+// --------------------
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
-// HttpClientFactory (ONLY place)
-builder.Services.AddHttpClient();
-
-// Infrastructure wiring
-builder.Services.AddGeminiAi(builder.Configuration);
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// --------------------
+// Application services
+// --------------------
+builder.Services.AddScoped<ITimetableExtractionService, TimetableExtractionService>();
+
+// --------------------
+// OCR (Infrastructure)
+// --------------------
+builder.Services.Configure<TesseractOptions>(
+    builder.Configuration.GetSection("Tesseract"));
+builder.Services.Configure<GeminiOptions>(
+    builder.Configuration.GetSection("Gemini"));
+
+builder.Services.AddHttpClient<IAiClient, GeminiAiClient>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(60);
+});
+
+builder.Services.AddScoped<IOcrService, TesseractOcrService>();
+
+// --------------------
+// Gemini AI
+// --------------------
+builder.Services.AddHttpClient<IAiClient, GeminiAiClient>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(60);
+});
+
+// --------------------
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
