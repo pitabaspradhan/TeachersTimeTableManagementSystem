@@ -1,0 +1,113 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+.wrapper {
+  padding: 20px;
+  overflow-x: auto;
+  background: #f4f4f4;
+}
+
+.timetable {
+  border-collapse: collapse;
+  min-width: 1400px;
+  background: white;
+}
+
+th {
+  border: 1px solid #999;
+  padding: 8px;
+  font-size: 13px;
+  background: #ffffff;
+  text-align: center;
+}
+
+td {
+  border: 1px solid #999;
+  padding: 10px;
+  font-size: 13px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.day {
+  font-weight: bold;
+  background: #f0f0f0;
+  width: 120px;
+}
+
+/* Subject colours (matched to teacher timetable style) */
+.rwi {
+  background: #e6f2fa;
+}
+.maths {
+  background: #ffffff;
+}
+.english {
+  background: #ffffff;
+}
+.pe {
+  background: #ededed;
+}
+.science {
+  background: #fff3a0;
+}
+.history {
+  background: #ffffff;
+}
+.music {
+  background: #fff3a0;
+}
+.art {
+  background: #fff3a0;
+}
+.phse {
+  background: #fff3a0;
+}
+
+.assembly {
+  background: #b7d7f0;
+  font-weight: bold;
+}
+
+.empty {
+  background: #ffffff;
+}
