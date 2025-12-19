@@ -41,7 +41,7 @@ builder.Services.AddScoped<IOcrService, TesseractOcrService>();
 // --------------------
 builder.Services.AddHttpClient<IAiClient, GeminiAiClient>(client =>
 {
-    client.Timeout = TimeSpan.FromSeconds(60);
+    client.Timeout = TimeSpan.FromSeconds(180);
 });
 
 // --------------------
